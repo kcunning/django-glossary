@@ -1,0 +1,16 @@
+Purpose:
+
+Create a glossary for a site. 
+
+Current features:
+
+A user can add terms. \o/
+Terms are displayed on a single page with term, then definition.
+
+Roadmap for the future:
+
+ - ABC quick nav
+ - Glossary specific search
+ - Term view
+ - Multiple glossaries per site
+ - Pop-up rendering on rich text fields
