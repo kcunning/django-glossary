@@ -35,3 +35,20 @@ def search(request):
 	return render_to_response('glossary/search.html', 
 				  {'query':query,
 				  'results': results2 })
+
+		
+def abc_nav(request, letter = ""):
+	from urlparse import urlparse
+	
+	url = request.get_full_path()
+	letter = url[url.__len__()-1]
+	
+	a_z = [chr(i) for i in range(65,91)]
+	query = request.GET.get('q', '')
+	print "Query was: %s" % query
+	results = []
+	return render_to_response('glossary/abc_nav.html',
+					{'a_z':a_z,
+					'url':url,
+					'letter':letter})
+	
