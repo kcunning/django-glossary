@@ -12,10 +12,22 @@ def term_index(request):
 								{ 'term_list': Term.objects.all()})
 								
 def search(request):
+	from django.db import connection, transaction
+	cursor = connection.cursor()
+	
 	query = request.GET.get('q', '')
 	results = []
+
+	query2 = "%%" + query + "%%"
+	subquery = 'select title, description from glossary_term where (title LIKE "%s") or (description LIKE "%s") or (acronym LIKE "%s") or (long_name LIKE "%s")' % (query2, query2, query2, query2)
+	
+	cursor.execute(subquery)
+	results = cursor.fetchall()
+	
 	if query:
-		results = Term.objects.filter(description__icontains=query)
+		cursor.execute(subquery)
+		results = cursor.fetchall()
+		print results
 	return render_to_response('glossary/search.html', 
 				  {'query':query,
 				  'results': results })
