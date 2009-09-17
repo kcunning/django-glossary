@@ -19,7 +19,7 @@ def search(request):
 	results = []
 
 	query2 = "%%" + query + "%%"
-	subquery = 'select title, description from glossary_term where (title LIKE "%s") or (description LIKE "%s") or (acronym LIKE "%s") or (long_name LIKE "%s")' % (query2, query2, query2, query2)
+	subquery = 'select distinct title from glossary_term where (title LIKE "%s") or (description LIKE "%s") or (acronym LIKE "%s") or (long_name LIKE "%s")' % (query2, query2, query2, query2)
 	
 	cursor.execute(subquery)
 	results = cursor.fetchall()
@@ -27,7 +27,11 @@ def search(request):
 	if query:
 		cursor.execute(subquery)
 		results = cursor.fetchall()
-		print results
+		r = []
+		for result in results:
+			r.append(result[0])
+		results = r
+		results2 = Term.objects.filter(title__in=results)
 	return render_to_response('glossary/search.html', 
 				  {'query':query,
-				  'results': results })
+				  'results': results2 })
