@@ -40,13 +40,16 @@ def search(request):
 def abc_nav(request):	
 	url = request.get_full_path()
 	letter = url[url.__len__()-1]
-	
-	a_z = [chr(i) for i in range(65,91)]
 	results = []
 	
-	if 
+# 	if url[url.__len__()-5:url.__len__()-1] == "/?q=":
+	results = Term.objects.filter(title__istartswith=letter)
+	
+	a_z = [chr(i) for i in range(65,91)]
+	
 	return render_to_response('glossary/abc_nav.html',
 					{'a_z':a_z,
 					'url':url,
-					'letter':letter})
+					'letter':letter,
+					'results':results})
 	
