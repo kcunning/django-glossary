@@ -16,5 +16,5 @@ setup(version="0.1",
                    ],
       author='Katie Cunningham',
       author_email='katie.fulton@gmail.com',
-      url='http://github.com/pydanny/django-glossary',
+      url='http://github.com/kcunning/django-glossary',
 )
