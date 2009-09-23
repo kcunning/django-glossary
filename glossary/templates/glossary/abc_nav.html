@@ -3,14 +3,15 @@
 {% block content %}
 	<ul>
 	{% for letter in a_z %}
-		<li><a href = "/abc_nav/q?={{ letter }}">{{ letter }}</a></li>
+		<li><a href = "q?={{ letter }}">{{ letter }}</a></li>
 	{% endfor %}
 	</ul>
-	
+	{% if results %}
 	<dl>
-	{% for result in results %}
-		<dt>{{ result.title }}:</dt>
-		<dd>{{ result.description }}</dd>
-	{% endfor %}
-	</dl>
+		{% for result in results %}
+			<dt>{{ result.title }}:</dt>
+			<dd>{{ result.description }}</dd>
+		{% endfor %}
+		</dl>
+	{% endif %}
 {% endblock %}

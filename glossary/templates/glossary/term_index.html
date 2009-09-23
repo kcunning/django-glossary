@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 
 {% block title %}Glossary{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}glossary.css" />
+{% endblock %}
 
 {% block content %}
-	<h1>Glossary terms</h1>
-	<dl>
-	{% for term in term_list %}
-		<dt>{{ term.title }}</dt>
-		<dd>{{ term.description }}</dd>
-	{% endfor %}
+	<h1 class = "glossary">Glossary terms</h1>
+	<div class="content_block">
+    	<dl class = "glossary">
+    	{% for term in term_list %}
+    		<dt class = "glossary term"><a href = "{{ term.slug }}/">{{ term.title }}</a></dt>
+    		<dd class = "glossary definition">{{ term.description }}</dd>
+    	{% endfor %}
+	</div>
 {% endblock %}
 

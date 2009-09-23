@@ -1,6 +1,7 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response
+from django.conf import settings
 from glossary.models import Term
 
 def term_index(request):
@@ -9,7 +10,8 @@ def term_index(request):
 	
 	"""
 	return render_to_response('glossary/term_index.html', 
-								{ 'term_list': Term.objects.all()})
+								{ 'term_list': Term.objects.all(),
+								'MEDIA_URL': settings.MEDIA_URL, })
 								
 def term(request):
 	return render_to_response('glossary/term.html',
