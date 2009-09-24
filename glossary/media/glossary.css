@@ -3,14 +3,16 @@
 	color: #353535;
 }
 
-dt.glossary a {
+dt.glossary a,
+li.glossary a {
 	color: #555555;
 	text-decoration: none;
 	background: #cccccc;
 	padding: .15em;
 }
 
-dt.glossary a:hover {
+dt.glossary a:hover,
+li.glossary a:hover {
 	background: yellow;
 	text-decoration: underline;
 }
