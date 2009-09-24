@@ -49,11 +49,11 @@ def search(request):
 		
 def abc_nav(request):	
 	url = request.get_full_path()
+
 	letter = url[url.__len__()-1]
+
 	results = []
-	
-# 	if url[url.__len__()-5:url.__len__()-1] == "/?q=":
-	results = Term.objects.filter(title__istartswith=letter)
+	results = Term.objects.filter(title__istartswith=letter).order_by('-title')
 
 	a_z = list(string.ascii_uppercase)
 	

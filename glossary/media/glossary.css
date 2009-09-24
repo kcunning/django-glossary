@@ -35,4 +35,9 @@ li.glossary {
 	display: inline;
 }
 
+li.current a {
+	background: #333333;
+	color: #eeeeee;
+}
+
 
