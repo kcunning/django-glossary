@@ -1,23 +1,20 @@
-from setuptools import setup
+from distutils.core import setup
  
-version = '0.1.0'
-
-setup(
-    name='django-glossary',
-    version=version,
-    description="django-uni-form",
-    long_description="",
-    classifiers=[
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Framework :: Django",
-        "Environment :: Web Environment",
-    ],
-    keywords='glossary,django',
-    author='Katie Cunningham',
-    author_email='katie.fulton@gmail.com',
-    url='http://github.com/pydanny/django-glossary',
-    license='MIT',
-    zip_safe=False,
-    setup_requires=['setuptools_git'],
+setup(version="0.1",
+      name='django-glossary',
+      description="A simple glossary system for Django-powered sites",
+      long_description="",
+      classifiers=["Development Status :: 3 - Alpha",
+                   "Programming Language :: Python",
+                   'Environment :: Web Environment',
+                   'Framework :: Django',
+                   'Intended Audience :: Developers',
+                   'License :: OSI Approved :: MIT License',
+                   'Operating System :: OS Independent',
+                   'Programming Language :: Python',
+                   'Topic :: Utilities'],
+                   ],
+      author='Katie Cunningham',
+      author_email='katie.fulton@gmail.com',
+      url='http://github.com/kcunning/django-glossary',
 )
