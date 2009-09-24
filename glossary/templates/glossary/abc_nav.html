@@ -5,23 +5,25 @@
 {% endblock %}
 
 {% block content %}
-	<ul class = "glossary">
-	{% for l in a_z %}
-	    {% ifequal l letter %}
-	        <li class = "glossary current"><a href = "q?={{ l }}">{{ l }}</a></li>
-	    {% else %}
-		    <li class = "glossary"><a href = "q?={{ l }}">{{ l }}</a></li>
-		{% endifequal %}
-	{% endfor %}
-	</ul>
-	{% if results %}
-	<div class = "content_block">
-    	<dl class = "glossary">
-    		{% for result in results %}
-    			<dt class = "glossary term">{{ result.title }}</dt>
-    			<dd class = "glossary definition">{{ result.description }}</dd>
-    		{% endfor %}
-    	</dl>
+    <div class = "glossary">
+    	<ul>
+    	{% for l in a_z %}
+    	    {% ifequal l letter %}
+    	        <li class = "current"><a href = "q?={{ l }}">{{ l }}</a></li>
+    	    {% else %}
+    		    <li><a href = "q?={{ l }}">{{ l }}</a></li>
+    		{% endifequal %}
+    	{% endfor %}
+    	</ul>
+    	{% if results %}
+    	<div class = "content_block">
+        	<dl>
+        		{% for result in results %}
+        			<dt class = "term">{{ result.title }}</dt>
+        			<dd class = "definition">{{ result.description }}</dd>
+        		{% endfor %}
+        	</dl>
+    	</div>
+    	{% endif %}
 	</div>
-	{% endif %}
 {% endblock %}

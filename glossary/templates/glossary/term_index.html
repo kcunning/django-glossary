@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class = "glossary">Glossary terms</h1>
+    <div class = "glossary">
+	<h1>Glossary terms</h1>
 	<div class="content_block">
-    	<dl class = "glossary">
+    	<dl>
     	{% for term in term_list %}
-    		<dt class = "glossary term"><a href = "{{ term.slug }}/">{{ term.title }}</a></dt>
-    		<dd class = "glossary definition">{{ term.description }}</dd>
+    		<dt class = "term"><a href = "{{ term.slug }}/">{{ term.title }}</a></dt>
+    		<dd class = "definition">{{ term.description }}</dd>
     	{% endfor %}
 	</div>
 {% endblock %}
