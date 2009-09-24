@@ -55,7 +55,7 @@ def abc_nav(request):
 # 	if url[url.__len__()-5:url.__len__()-1] == "/?q=":
 	results = Term.objects.filter(title__istartswith=letter)
 
-	a-z = list(string.ascii_uppercase)
+	a_z = list(string.ascii_uppercase)
 	
 	return render_to_response('glossary/abc_nav.html',
 					{'a_z':a_z,
