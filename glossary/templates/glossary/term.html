@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}glossary.css" />
+{% endblock %}
 
 {% block content %}
+    <div class = 'glossary content_block'>
+        <span>{{ term.slug }} - {{ term.description }}</span>
+    </div>
+{% endblock %}

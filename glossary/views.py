@@ -15,9 +15,12 @@ def term_index(request):
 								{ 'term_list': Term.objects.all(),
 								'MEDIA_URL': settings.MEDIA_URL, })
 								
-def term(request):
+def term(request, slug):
+	term_data = Term.objects.filter(slug=slug)
+	print term_data
 	return render_to_response('glossary/term.html',
-							{ 'term':'Pluto'})
+							{ 'term':term_data[0],
+							'MEDIA_URL': settings.MEDIA_URL,})
 								
 def search(request):
 	from django.db import connection, transaction
@@ -44,7 +47,8 @@ def search(request):
 		results2 = []
 	return render_to_response('glossary/search.html', 
 				  {'query':query,
-				  'results': results2 })
+				  'results': results2,
+				  'MEDIA_URL': settings.MEDIA_URL, })
 
 		
 def abc_nav(request):	
