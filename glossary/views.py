@@ -59,5 +59,6 @@ def abc_nav(request):
 					{'a_z':a_z,
 					'url':url,
 					'letter':letter,
-					'results':results})
+					'results':results,
+					'MEDIA_URL': settings.MEDIA_URL,})
 	

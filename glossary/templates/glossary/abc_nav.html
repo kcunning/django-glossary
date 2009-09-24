@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}glossary.css" />
+{% endblock %}
+
 {% block content %}
-	<ul>
+	<ul class = "glossary">
 	{% for letter in a_z %}
-		<li><a href = "q?={{ letter }}">{{ letter }}</a></li>
+		<li class = "glossary"><a href = "q?={{ letter }}">{{ letter }}</a></li>
 	{% endfor %}
 	</ul>
 	{% if results %}
-	<dl>
+	<dl class = "glossary">
 		{% for result in results %}
-			<dt>{{ result.title }}:</dt>
-			<dd>{{ result.description }}</dd>
+			<dt class = "glossary term">{{ result.title }}</dt>
+			<dd class = "glossary definition">{{ result.description }}</dd>
 		{% endfor %}
 		</dl>
 	{% endif %}

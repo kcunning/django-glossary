@@ -29,5 +29,8 @@ div.content_block {
 	border: solid 2px #676767;
 }
 
+li.glossary {
+	display: inline;
+}
 
 
