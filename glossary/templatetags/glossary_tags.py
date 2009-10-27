@@ -1,7 +1,8 @@
 from django import template
 register = template.Library()
 
-from glossary import models
+from django.shortcuts import render_to_response
+from glossary.models import Term
 
 @register.inclusion_tag('glossary/glossary_list.html')
 def glossary_list(page):
@@ -10,18 +11,16 @@ def glossary_list(page):
 	content = page.content
 	
 	while content.__contains__('[['):
-		print content
 		start = content.find('[[')+2
 		end = content.find(']]')
-	
 		term = content[start:end]
-
-		content = content.lstrip(content[0:end+2])
-
+		content = content[end+2:content.__len__()]
 		glossary_items.append(term)
-	
-	print glossary_items
-	return {
-		"glossary_items": glossary_items,
-	}
+	terms = []
+	for term in glossary_items:
+		t = Term.objects.filter(title=term)
+		if t:
+			terms.append(t[0])
+	print terms
+	return {"terms": terms,}
 
