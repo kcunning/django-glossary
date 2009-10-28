@@ -16,11 +16,18 @@ def glossary_list(page):
 		term = content[start:end]
 		content = content[end+2:content.__len__()]
 		glossary_items.append(term)
+		
 	terms = []
 	for term in glossary_items:
 		t = Term.objects.filter(title=term)
 		if t:
 			terms.append(t[0])
-	print terms
+			
+	terms.sort()
 	return {"terms": terms,}
 
+@register.inclusion_tag('glossary/glossarize.html')
+def glossarize(page):
+	content = page.content.replace('[[', '<span class = "glossarize">')
+	content = content.replace(']]', '</span>')
+	return {"content": content,}
