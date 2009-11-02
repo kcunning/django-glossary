@@ -1,47 +1,60 @@
 .glossary {
-	font-family: sans-serif;
-	color: #353535;
+    font-family: sans-serif;
+    color: #353535;
 }
 
 div.glossary dt a,
 div.glossary li a {
-	color: #555555;
-	text-decoration: none;
-	background: #cccccc;
-	padding: .15em;
+    color: #555555;
+    text-decoration: none;
+    background: #cccccc;
+    padding: .15em;
 }
 
 div.glossary dt a:hover,
 li.glossary a:hover {
-	background: yellow;
-	text-decoration: underline;
+    background: yellow;
+    text-decoration: underline;
 }
 
 div.glossary a.nostyle {
-	background: transparent;
-	text-decoration: underline;
+    background: transparent;
+    text-decoration: underline;
 }
 
 div.glossary dd {
-	padding-top: .3em;
+    padding-top: .3em;
 }
 
 div.glossary h1 {
-	color: #676767;
+    color: #676767;
 }
 
 div.content_block {
-	padding: 1em;
-	margin: 1em;
-	border: solid 2px #676767;
+    padding: 1em;
+    margin: 1em;
+    border: solid 2px #676767;
 }
 
 div.glossary li {
-	display: inline;
+    display: inline;
 }
 div.glossary li.current a {
-	background: #333333;
-	color: #eeeeee;
+    background: #333333;
+    color: #eeeeee;
 }
 
 
+.glossary ul.letters {
+    list-style: none;
+    font-variant: small-caps;
+    font-size: larger;
+}
+
+.glossary ul.letters li {
+    display: inline;
+    background: none!important;
+    padding: 0!important;
+    margin:0!important;
+    padding-right: .2em!important;
+}

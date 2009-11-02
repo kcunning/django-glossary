@@ -1,12 +1,9 @@
 from django.conf.urls.defaults import *
 from glossary.models import Term
 
-# These are sample URL patterns for you! Chances are, you'll want to splice this app up how you need.
+terms = Term.objects.all()
 
 urlpatterns = patterns('',
-	(r'^$', 'glossary.views.term_index'),
-	(r'^search/$', 'glossary.views.search'),
-	(r'^abc_nav/', 'glossary.views.abc_nav'),
-	(r'^(?P<slug>[-\w]+)/$', 'glossary.views.term'),
-
+    url(r'^$',                     'glossary.views.term_list', {"paginate_by": 20}),
+    url(r'^(?P<slug>[-\w]+)/$',    'django.views.generic.list_detail.object_detail', {"queryset": terms}),
 )

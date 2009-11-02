@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Glossary{% endblock %}
+{% block extra_head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}glossary.css" />
+{% endblock %}
+
+{% block content %}
+    <div class="glossary">
+        <h1>Glossary terms</h1>
+
+        <ul class="letters">
+            {% for l in a_z %}
+                <li{% ifequal l starts_with %} class="current"{% endifequal %}><a href = "?l={{ l }}">{{ l }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <form method="get" action="">
+            <p><label for="id_q">Search:</label>
+            <input type="text" name="q" id="id_q" value="{{ query }}" />
+            <input type="submit" value="Submit" /></p>
+        </form>
+
+        {% if query %}
+            {% if not object_list %}
+                <p>No results found</p>
+            {% endif %}
+        {% endif %}
+
+        <dl>
+        {% for term in object_list %}
+            <dt><a href="{{ term.slug }}/">{{ term.title }}</a></dt>
+            {% for synonym in term.synonyms  %}
+                <dt class="synonym">{{ synonym.title }}</dt>
+            {% endfor %}
+            <dd class="definition">{{ term.description }}</dd>
+        {% endfor %}
+
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
