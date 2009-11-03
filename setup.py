@@ -1,5 +1,5 @@
 from distutils.core import setup
- 
+
 setup(version="0.1",
       name='django-glossary',
       description="A simple glossary system for Django-powered sites",
