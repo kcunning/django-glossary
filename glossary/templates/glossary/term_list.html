@@ -37,16 +37,19 @@
             <dd class="definition">{{ term.description }}</dd>
         {% endfor %}
 
-        {% if object_list.has_previous %}
-            <a href="?page={{ object_list.previous_page_number }}">previous</a>
-        {% endif %}
+        {% if is_paginated %}
+            {% if has_previous %}
+                <a href="?page={{ previous }}">previous</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
-        </span>
 
-        {% if object_list.has_next %}
-            <a href="?page={{ object_list.next_page_number }}">next</a>
+            <span class="current">
+                Page {{ page }} of {{ pages }}.
+            </span>
+
+            {% if has_next %}
+                <a href="?page={{ next }}">next</a>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}
