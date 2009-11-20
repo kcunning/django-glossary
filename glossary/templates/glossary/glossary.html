@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}glossary.css" />
+{% endblock %}
+
+{% block content %}
+	<ul>
+	{% for l in a_z %}
+	    {% ifequal l letter %}
+	        <li class = "current"><a href = "q?={{ l }}">{{ l }}</a></li>
+	    {% else %}
+		    <li><a href = "q?={{ l }}">{{ l }}</a></li>
+		{% endifequal %}
+	{% endfor %}
+	</ul>
+	{% if results %}
+	<div class = "content_block">
+    	<dl>
+    		{% for result in results %}
+    			<dt class = "term">{{ result.title }}</dt>
+    			<dd class = "definition">{{ result.description }}</dd>
+    		{% endfor %}
+    	</dl>
+	</div>
+	{% endif %}
+	
+	<form method = "get" action = "../search/">
+		<p><label for = "id_q">Search:</label>
+		<input type = "text" name = "q" id = "id_q" value = "{{ query }}" />
+		<input type = "submit" value = "Submit" /></p>
+	</form>
+	{% if results %}
+		<p>You searched for "{{ query }}".</p>
+		{% if results %}
+			<p>Search results:</p>
+			<ul>
+				{% for term in results %}
+					<li><a href = "../{{ term.slug }}" class = "nostyle">{{ term.title }}</a> - {{ term.description }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endif %}
+	{% if query and not results %}
+		<p>No results found.</p>
+	{% endif %}
+	{% if not query %}
+		<p>Please make a query! I'm hungry!</p>
+	{% endif %}
+	
+{% endblock %}
