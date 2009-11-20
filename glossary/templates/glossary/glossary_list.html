@@ -1,0 +1,6 @@
+<dl><em>Glossary terms in this page</em>:
+    {% for term in terms %}
+        <dt>{{ term }}</dt>
+        <dd>{{ term.description }}</dd>
+    {% endfor %}
+</dl>
