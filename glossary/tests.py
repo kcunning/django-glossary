@@ -43,6 +43,6 @@ class GlossaryTestCase(TestCase):
 		response = self.client.get('/glossary/?q=dude')
 		self.assertTrue(response.status_code == 200)
 		self.assertContains(response, "Dace") 
-		self.assertContains(response, '<input type="text" name="q" id="id_q" value="dude">')
+		self.assertContains(response, '<input type="text" name="q" id="id_q" value="dude"')
 		
 		
