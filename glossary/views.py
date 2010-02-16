@@ -16,10 +16,6 @@ def term_list(request, **kwargs):
 
     terms = Term.objects.all()
 
-    if "l" in request.GET:
-        ec['starts_with'] = request.GET['l'].lower()
-        terms = terms.filter(title__startswith=ec['starts_with'])
-
     if "q" in request.GET:
         query = request.GET['q']
         ec['query'] = query
@@ -28,5 +24,9 @@ def term_list(request, **kwargs):
             | Q(description__contains=query)
             | Q(synonyms__title__contains=query)
         ).distinct()
+    else:
+        initial = request.GET.get("l", "a").lower()
+        ec['starts_with'] = initial
+        terms = terms.filter(title__startswith=ec['starts_with'])
 
     return object_list(request, queryset=terms, extra_context=ec, **kwargs)
