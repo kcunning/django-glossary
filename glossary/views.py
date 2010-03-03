@@ -27,6 +27,8 @@ def term_list(request, **kwargs):
     else:
         initial = request.GET.get("l", "a").lower()
         ec['starts_with'] = initial
-        terms = terms.filter(title__startswith=ec['starts_with'])
+        terms = terms.filter(title__istartswith=ec['starts_with'])
+
+    terms = terms.extra(select={"lower_title": "LOWER(title)"}).order_by("lower_title")
 
     return object_list(request, queryset=terms, extra_context=ec, **kwargs)
