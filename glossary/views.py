@@ -20,9 +20,9 @@ def term_list(request, **kwargs):
         query = request.GET['q']
         ec['query'] = query
         terms = terms.filter(
-            Q(title__contains=query)
-            | Q(description__contains=query)
-            | Q(synonyms__title__contains=query)
+            Q(title__icontains=query)
+            | Q(description__icontains=query)
+            | Q(synonyms__title__icontains=query)
         ).distinct()
     else:
         initial = request.GET.get("l", "a").lower()
