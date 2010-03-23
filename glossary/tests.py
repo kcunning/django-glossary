@@ -1,9 +1,7 @@
-from django.test.client import Client
-from glossary.models import Term, Synonym
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-import unittest
+from glossary.models import Term, Synonym
 
 class GlossaryTestCase(TestCase):
     def setUp(self):
@@ -19,18 +17,32 @@ class GlossaryTestCase(TestCase):
         self.synonym = Synonym.objects.create(title="Synonym", term = self.ace)
 
     def test_term(self):
-        self.assertEquals(self.ace.title, self.synonym.term.title)
+        # These really aren't supposed to be different without non-ascii test data:
+        self.assertEquals(str(unicode(self.ace)), str(self.ace))
+
+        self.assertEquals(unicode(self.ace.title), u"Ace")
         self.assertEquals(self.ace.slug, "ace")
 
+    def test_synonym(self):
+        self.assertEquals(self.ace.title, self.synonym.term.title)
+
+        # These really aren't supposed to be different without non-ascii test data:
+        self.assertEquals(str(unicode(self.synonym)), str(self.synonym))
+
+        self.assertTrue("synonym for" in unicode(self.synonym))
+        self.assertTrue(self.ace.title in unicode(self.synonym))
 
     def test_term_view(self):
         response = self.client.get(reverse("glossary-list"))
         self.assertTrue(response.status_code == 200)
 
-        response = self.client.get(reverse("glossary-detail", kwargs={"slug": "ace"}))
+        response = self.client.get(self.ace.get_absolute_url())
         self.assertTrue(response.status_code == 200)
         self.assertContains(response, "Ace")
         self.assertContains(response, "Description for Ace")
+        self.assertContains(response, self.ace.title)
+        self.assertContains(response, self.ace.description)
+        self.assertContains(response, self.synonym.title)
 
         response = self.client.get(reverse("glossary-list") + '?l=a')
         self.assertTrue(response.status_code == 200)
@@ -40,5 +52,4 @@ class GlossaryTestCase(TestCase):
         self.assertTrue(response.status_code == 200)
         self.assertContains(response, "Dace")
         self.assertContains(response, '<input type="text" name="q" id="id_q" value="dude"')
-
 

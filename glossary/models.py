@@ -10,7 +10,7 @@ class Term(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-       return ('glossary_detail', (), {'slug': self.slug})
+       return ('glossary-detail', (), {'slug': self.slug})
 
     def __unicode__(self):
         return unicode(self.title)
