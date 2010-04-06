@@ -1,0 +1,3 @@
+include-file README
+recursive-include glossary/media *
+recursive-include glossary/templates *

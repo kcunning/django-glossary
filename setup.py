@@ -1,4 +1,5 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 setup(
     version="0.1",
@@ -22,9 +23,7 @@ setup(
     requires=[
         "django (>=1.1.1)",
     ],
-    packages=[
-        "glossary"
-    ],
+    packages=find_packages(exclude="test_project"),
     zip_safe=False,
     include_package_data=True,
 )
