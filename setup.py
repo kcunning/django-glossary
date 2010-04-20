@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-setup(version="0.1",
+setup(version="0.1.2",
       name='django-glossary',
       description="A simple glossary system for Django-powered sites",
       long_description="",
@@ -16,4 +16,5 @@ setup(version="0.1",
       author='Katie Cunningham',
       author_email='katie.fulton@gmail.com',
       url='http://github.com/kcunning/django-glossary',
+      packages=['glossary']
 )
