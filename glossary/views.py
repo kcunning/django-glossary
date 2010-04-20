@@ -4,7 +4,7 @@ from django.db.models import Q
 
 from django.views.generic.list_detail import object_list
 
-from .models import Term
+from glossary.models import Term
 
 def term_list(request, **kwargs):
     """

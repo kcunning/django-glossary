@@ -1,0 +1,23 @@
+This is a Django application that allows users to create a basic glossary application for their site. 
+
+Current features:
+
+A user can add terms. 
+Terms are displayed on a single page with term, then definition.
+Users can search for terms
+ABC quick nav
+
+Roadmap for the future:
+ - Term view
+ - Multiple glossaries per site
+ - Pop-up rendering on rich text fields
+
+Installation:
+
+From pypi:
+
+pip install django-glossary
+
+From source:
+
+python setup.py install
