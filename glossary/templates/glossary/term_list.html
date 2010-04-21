@@ -11,8 +11,8 @@
         <h1>Glossary terms</h1>
 
         <ul class="letters">
-            {% for l in a_z %}
-                <li{% ifequal l starts_with %} class="current"{% endifequal %}><a href = "?l={{ l }}">{{ l }}</a></li>
+            {% for i in a_z %}
+                <li{% ifequal i starts_with %} class="current"{% endifequal %}><a href = "?l={{ i }}">{{ i }}</a></li>
             {% endfor %}
         </ul>
 

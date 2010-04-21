@@ -31,4 +31,9 @@ def term_list(request, **kwargs):
 
     terms = terms.extra(select={"lower_title": "LOWER(%s.title)" % Term._meta.db_table }).order_by("lower_title")
 
-    return object_list(request, queryset=terms, extra_context=ec, **kwargs)
+    return object_list(request, 
+						queryset=terms, 
+						extra_context={'ec': ec,
+						 				'starts_with': ec['starts_with'],
+										'a_z': ec['a_z'],},
+						**kwargs)
