@@ -31,12 +31,14 @@ def term_list(request, **kwargs):
         terms = terms.filter(title__istartswith=ec['starts_with'])
 
     terms = terms.extra(select={"lower_title": "LOWER(%s.title)" % Term._meta.db_table }).order_by("lower_title")
-    
+
+    terms = Term.objects.all()
     used_letters = []
     for i in ec["a_z"]:
         try:
-            x = Term.objects.get(title__startswith=i)
-            used_letters.append(i)
+            x = terms.filter(title__istartswith=i)
+            if x:
+                used_letters.append(i)
         except:
             pass
     

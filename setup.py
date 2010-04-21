@@ -1,7 +1,7 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-setup(version="0.1.2",
+setup(version="0.1.3",
     name='django-glossary',
     description="A simple glossary system for Django-powered sites",
     long_description="",
