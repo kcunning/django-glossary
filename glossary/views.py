@@ -30,19 +30,20 @@ def term_list(request, **kwargs):
         ec['starts_with'] = initial
         terms = terms.filter(title__istartswith=ec['starts_with'])
 
-    terms = terms.extra(select={"lower_title": "LOWER(%s.title)" % Term._meta.db_table }).order_by("lower_title")
 
-    terms = Term.objects.all()
+	terms = terms.extra(select={"lower_title": "LOWER(%s.title)" % Term._meta.db_table }).order_by("lower_title")
+	
+    t = Term.objects.all()
     used_letters = []
     for i in ec["a_z"]:
         try:
-            x = terms.filter(title__istartswith=i)
+            x = t.filter(title__istartswith=i)
             if x:
                 used_letters.append(i)
         except:
             pass
     
-
+    
     return object_list(request, 
                         queryset=terms, 
                         extra_context={'ec': ec,
