@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load glossary_tags %}
+{% load cache %}
 
 {% block title %}Glossary{% endblock %}
 {% block extra_head %}
@@ -9,12 +11,17 @@
 {% block content %}
     <div class="glossary">
         <h1>Glossary terms</h1>
-
-        <ul class="letters">
-            {% for i in a_z %}
-                <li{% ifequal i starts_with %} class="current"{% endifequal %}><a href = "?l={{ i }}">{{ i }}</a></li>
-            {% endfor %}
-        </ul>
+		{% cache 500 abc_nav %}
+	        <ul class="letters">
+	            {% for i in a_z %}					
+					{% if i|in_list:used_letters %}
+	                	<li{% ifequal i starts_with %} class="current"{% endifequal %}><a href = "?l={{ i }}">{{ i }}</a></li>
+					{% else %}
+						<li>{{ i }}</li>
+					{% endif %}
+	            {% endfor %}
+	        </ul>
+		{% endcache %}
 
         <form method="get" action="">
             <p><label for="id_q">Search:</label>

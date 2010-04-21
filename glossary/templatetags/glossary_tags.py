@@ -31,3 +31,15 @@ def glossarize(page):
 	content = page.content.replace('[[', '<span class = "glossarize">')
 	content = content.replace(']]', '</span>')
 	return {"content": content,}
+	
+from django import template
+register = template.Library()
+
+@register.filter
+def in_list(value,arg):
+    '''
+    Usage
+    {% if value|in_list:list %}
+    {% endif %}
+    '''
+    return value in arg
