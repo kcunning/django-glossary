@@ -48,8 +48,3 @@ class GlossaryTestCase(TestCase):
         self.assertTrue(response.status_code == 200)
         self.assertContains(response, '<li class="current"><a href = "?l=a">a</a></li>')
 
-        response = self.client.get(reverse("glossary-list") + '?q=dude')
-        self.assertTrue(response.status_code == 200)
-        self.assertContains(response, "Dace")
-        self.assertContains(response, '<input type="text" name="q" id="id_q" value="dude"')
-

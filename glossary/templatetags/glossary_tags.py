@@ -4,7 +4,7 @@ register = template.Library()
 from django.shortcuts import render_to_response
 from glossary.models import Term
 
-@register.inclusion_tag('glossary/glossary_list.html')
+@register.inclusion_tag("glossary/glossary_list.html")
 def glossary_list(page):
 	glossary_items = []
 	
@@ -26,7 +26,7 @@ def glossary_list(page):
 	terms.sort()
 	return {"terms": terms,}
 
-@register.inclusion_tag('glossary/glossarize.html')
+@register.inclusion_tag("glossary/glossarize.html")
 def glossarize(page):
 	content = page.content.replace('[[', '<span class = "glossarize">')
 	content = content.replace(']]', '</span>')
