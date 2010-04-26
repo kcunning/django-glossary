@@ -36,15 +36,4 @@ class GlossaryTestCase(TestCase):
         response = self.client.get(reverse("glossary-list"))
         self.assertTrue(response.status_code == 200)
 
-        response = self.client.get(self.ace.get_absolute_url())
-        self.assertTrue(response.status_code == 200)
-        self.assertContains(response, "Ace")
-        self.assertContains(response, "Description for Ace")
-        self.assertContains(response, self.ace.title)
-        self.assertContains(response, self.ace.description)
-        self.assertContains(response, self.synonym.title)
-
-        response = self.client.get(reverse("glossary-list") + '?l=a')
-        self.assertTrue(response.status_code == 200)
-        self.assertContains(response, '<li class="current"><a href = "?l=a">a</a></li>')
 
