@@ -25,6 +25,7 @@ def term_list(request, **kwargs):
             | Q(description__icontains=query)
             | Q(synonyms__title__icontains=query)
         ).distinct()
+        ec['starts_with'] = ec['query'][0]
     else:
         initial = request.GET.get("l", "a").lower()
         ec['starts_with'] = initial
