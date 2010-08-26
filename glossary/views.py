@@ -25,7 +25,10 @@ def term_list(request, **kwargs):
             | Q(description__icontains=query)
             | Q(synonyms__title__icontains=query)
         ).distinct()
-        ec['starts_with'] = ec['query'][0]
+        try:
+            ec['starts_with'] = ec['query'][0]
+        except IndexError:
+            ec['starts_with'] = ''
     else:
         initial = request.GET.get("l", "a").lower()
         ec['starts_with'] = initial
