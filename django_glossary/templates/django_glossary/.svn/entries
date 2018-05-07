@@ -1,0 +1,65 @@
+8
+
+dir
+0
+https://stacr.hq.nasa.gov/svn/schwa/sunra/trunk/apps/glossary/templates/glossary
+https://stacr.hq.nasa.gov/svn/schwa
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+glossary_list.html
+file
+
+
+
+add
+
+term_index.html
+file
+
+
+
+add
+
+glossarize.html
+file
+
+
+
+add
+
+glossary.html
+file
+
+
+
+add
+
+search.html
+file
+
+
+
+add
+
+term.html
+file
+
+
+
+add
+
+abc_nav.html
+file
+
+
+
+add
+
