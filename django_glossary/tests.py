@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django_glossary.models import Term, Synonym
 
-from glossary.models import Term, Synonym
 
 class GlossaryTestCase(TestCase):
     def setUp(self):
@@ -18,22 +18,20 @@ class GlossaryTestCase(TestCase):
 
     def test_term(self):
         # These really aren't supposed to be different without non-ascii test data:
-        self.assertEquals(str(unicode(self.ace)), str(self.ace))
+        self.assertEquals(str(self.ace), str(self.ace))
 
-        self.assertEquals(unicode(self.ace.title), u"Ace")
+        self.assertEquals(self.ace.title, u"Ace")
         self.assertEquals(self.ace.slug, "ace")
 
     def test_synonym(self):
         self.assertEquals(self.ace.title, self.synonym.term.title)
 
         # These really aren't supposed to be different without non-ascii test data:
-        self.assertEquals(str(unicode(self.synonym)), str(self.synonym))
+        self.assertEquals(str(self.synonym)), str(self.synonym)
 
-        self.assertTrue("synonym for" in unicode(self.synonym))
-        self.assertTrue(self.ace.title in unicode(self.synonym))
+        self.assertTrue("synonym for" in self.synonym)
+        self.assertTrue(self.ace.title in self.synonym)
 
     def test_term_view(self):
         response = self.client.get(reverse("glossary-list"))
         self.assertTrue(response.status_code == 200)
-
-

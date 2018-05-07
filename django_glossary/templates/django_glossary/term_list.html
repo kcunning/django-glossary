@@ -9,11 +9,24 @@
 {% endblock %}
 
 {% block content %}
+    <table border="2">
+        <tr>
+            <td>
+                a_z: {{ a_z }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                used_letters: {{ used_letters }}
+            </td>
+        </tr>
+    </table>
+
     <div class="glossary">
         <h1>Glossary terms</h1>
 		{% cache 500 abc_nav %}
 	        <ul class="letters">
-	            {% for i in a_z %}					
+	            {% for i in a_z %}
 					{% if i|in_list:used_letters %}
 	                	<li{% ifequal i starts_with %} class="current"{% endifequal %}><a href = "?l={{ i }}">{{ i }}</a></li>
 					{% else %}
@@ -37,7 +50,7 @@
 
         <dl>
        {% for term in object_list %}
-            <dt><a href="{{ term.slug }}/">{{ term.title }}</a></dt>
+            <dt><a href="{% url 'django_glossary:detail' slug=term.slug %}">{{ term.title }}</a></dt>
             {% for synonym in term.synonyms.all  %}
                 <dt class="synonym">{{ synonym.title }}</dt>
             {% endfor %}

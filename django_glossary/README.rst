@@ -1,8 +1,14 @@
-Purpose:
+========
+Glossary
+========
 
-Create a glossary for a site. 
+Purpose
+-------
 
-Current features:
+Create a glossary for a site.
+
+Current features
+----------------
 
 A user can add terms. \o/
 Terms are displayed on a single page with term, then definition.
