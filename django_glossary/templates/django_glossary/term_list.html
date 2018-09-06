@@ -50,7 +50,7 @@
 
         <dl>
        {% for term in object_list %}
-            <dt><a href="{% url 'django_glossary:detail' slug=term.slug %}">{{ term.title }}</a></dt>
+            <dt><a href="{% url 'django_glossary:term-detail' slug=term.slug %}">{{ term.title }}</a></dt>
             {% for synonym in term.synonyms.all  %}
                 <dt class="synonym">{{ synonym.title }}</dt>
             {% endfor %}

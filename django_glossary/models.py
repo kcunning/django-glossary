@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Term(models.Model):
@@ -8,15 +9,14 @@ class Term(models.Model):
     slug        = models.SlugField(unique=True)
     description = models.TextField()
 
-    class Meta:
-        ordering = ['title', '-modified']
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('glossary_detail', (), {'slug': self.slug})
-
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('django_glossary:term-detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        ordering = ['title', '-modified']
 
 
 class Synonym(models.Model):
@@ -24,4 +24,7 @@ class Synonym(models.Model):
     term  = models.ForeignKey(Term, related_name="synonyms")
 
     def __str__(self):
-        return "{} (synonym for {})".format(self.title, self.term.title)
+        return f"{self.title} (synonym for {self.term.title})"
+
+    def get_absolute_url(self):
+        return reverse('django_glossary:term-detail', kwargs={'slug': self.term.slug})

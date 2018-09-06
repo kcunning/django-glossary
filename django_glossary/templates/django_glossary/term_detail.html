@@ -6,7 +6,7 @@
 
 {% block content %}
     <dl class="glossary term_detail">
-        <dt><a href="{% url 'django_glossary:detail' slug=object.slug %}">{{ object.title }}</a></dt>
+        <dt><a href="{% url 'django_glossary:term-detail' slug=object.slug %}">{{ object.title }}</a></dt>
         {% for synonym in object.synonyms.all  %}
             <dt class="synonym">{{ synonym.title }}</dt>
         {% endfor %}
