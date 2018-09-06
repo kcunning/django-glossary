@@ -7,6 +7,8 @@ from django_glossary.models import Term
 class TermListView(ListView):
     model = Term
     context_object_name = "terms"
+    paginate_by = 20
+    ordering = 'title'
 
     def get_context_data(self, **kwargs):
         context = super(TermListView, self).get_context_data(**kwargs)
