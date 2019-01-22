@@ -1,7 +1,7 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-setup(version="0.1.6",
+setup(version="0.1.7",
     name='django-glossary',
     description="A simple glossary system for Django-powered sites",
     long_description="",
@@ -20,7 +20,7 @@ setup(version="0.1.6",
     author_email='katie.fulton@gmail.com',
     url='http://github.com/kcunning/django-glossary',
     requires=[
-        "django (>=1.1.1)",
+        "django (>=1.11.15)",
     ],
     packages=find_packages(exclude="test_project"),
     zip_safe=False,
